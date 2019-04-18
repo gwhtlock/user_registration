@@ -5,29 +5,23 @@ app = Flask(__name__)
 
 app.config['DEBUG'] = True      # displays runtime errors in the browser, too
 
-def check_input(login,pw1,pw2):
+def check_username(login_name):
 
-    name = login
-    pass1 = pw1
-    pass2 = pw2
+    name = login_name
 
-    noname = ""
-    nopw1 = ""
-    nopw2 = ""
-
-    if name == "" or pass1 == "" or pass2 == "":
-
-        if name == "":
-            noname = "You didn't enter a Username!  "
-
-        if pass1 == "":
-            nopw1 = "You didn't enter a password!  "
-
-        if pass2 == "":
-            nopw2 = "You didn't re-enter a password!  "
+    user_error = ""
+   
+    if name == "":
+        user_error = "Please enter a username"
+    elif len(name) < 3:
+        user_error = "Username is too short. Must be more than 3 characters"
+    elif len(name) > 20:
+        user_error = "Username is too long. Must be less than 20 characters"
+    
 
 
-        return ("Please enter a value in each field. "+ "  " + noname + "  " + nopw1 +"   "+ nopw2+"  ")
+
+    return (user_error)
 
 
 
@@ -40,19 +34,16 @@ def user_name():
     password1 = request.form['password1']
     password2 = request.form['password2']
 
-    username_error = check_input(username, password1, password2)
+    user_errors = check_username(username)
 
-    if username_error != "":
-        return render_template('edit.html', error = username_error)
 
-    match_error = ""
 
-    if password1 != password2:
-        match_error = "passwords do not match"
-        return render_template('edit.html', error = match_error)
-        
+    if user_errors != "":
+        return render_template('edit.html', error = user_errors, username_error = user_errors)
 
-    return render_template("confirmation.html",user = username, pw1 = password1, pw2 = password2, error = match_error )
+    
+
+    return render_template("confirmation.html",user = username, pw1 = password1, pw2 = password2 )
 
 
 @app.route("/")

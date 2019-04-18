@@ -10,20 +10,29 @@
 
 
 <form action="/register" method="post">
-    <label>
+    <label for = "username">
         Enter User name:
-        <input type="text" name="user"/>
     </label>
+        <input type="text" name="user" id = "username"/>
+    <br/>
+    {% if error !="" %}
+      <p class='error'>{{ username_error }}</p>
+    {% endif %}
 
-    <label>
+    <label for = "pw1">
         Enter password:
-        <input type="text" name="password1"/>
-    </label>
 
-    <label>
-        Re-enter password:
-        <input type="text" name="password2"/>
     </label>
+        <input type="text" name="password1" id = "pw1"/>
+    <br/>
+
+    <label for = "pw2">
+        Re-enter password:
+    </label>
+        <input type="text" name="password2" id = "pw2"/>
+
+    <br/>
+    
     <input type="submit" value="Register"/>
 </form>
 
