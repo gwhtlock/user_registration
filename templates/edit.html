@@ -6,16 +6,17 @@
 {% block content %}
 
 
-<h1>"User Registration"</h1>
+<h1>User Registration</h1>
 
 
 <form action="/register" method="post">
     <label for = "username">
         Enter User name:
     </label>
-        <input type="text" name="user" id = "username"/>
     <br/>
-    {% if error !="" %}
+        <input type="text" name="user" id = "username" value = "{{username}}"/>
+    <br/>
+    {% if username_error !="" %}
       <p class='error'>{{ username_error }}</p>
     {% endif %}
 
@@ -23,15 +24,30 @@
         Enter password:
 
     </label>
+    <br/>
         <input type="text" name="password1" id = "pw1"/>
     <br/>
+
+    {% if pass1_error !="" %}
+      <p class='error'>{{ pass1_error }}</p>
+    {% endif %}
 
     <label for = "pw2">
         Re-enter password:
     </label>
+    <br/>
         <input type="text" name="password2" id = "pw2"/>
 
     <br/>
+
+    {% if pass2_error !="" %}
+      <p class='error'>{{ pass2_error }}</p>
+    {% endif %}
+
+    {% if matching_error !="" %}
+    <p class='error'>{{ matching_error }}</p>
+  {% endif %}
+  
     
     <input type="submit" value="Register"/>
 </form>
