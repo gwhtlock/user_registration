@@ -25,7 +25,7 @@
 
     </label>
     <br/>
-        <input type="text" name="password1" id = "pw1"/>
+        <input type="password" name="password1" id = "pw1"/>
     <br/>
 
     {% if pass1_error !="" %}
@@ -36,7 +36,7 @@
         Re-enter password:
     </label>
     <br/>
-        <input type="text" name="password2" id = "pw2"/>
+        <input type="password" name="password2" id = "pw2"/>
 
     <br/>
 
@@ -46,7 +46,19 @@
 
     {% if matching_error !="" %}
     <p class='error'>{{ matching_error }}</p>
-  {% endif %}
+    {% endif %}
+
+  <label for = "email">
+    Enter Email(optional):
+</label>
+<br/>
+    <input type="text" name="email" id = "email" value="{{email}}"/>
+
+<br/>
+{% if email_error !="" %}
+    <p class='error'>{{ email_error }}</p>
+{% endif %}
+
   
     
     <input type="submit" value="Register"/>
