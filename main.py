@@ -10,23 +10,22 @@ app.config['DEBUG'] = True      # displays runtime errors in the browser, too
 
 
 
-@app.route("/crossoff", methods=['POST'])
-def crossoff_movie():
 
-   
-    return redirect("/")
 
-@app.route("/add", methods=['POST'])
-def add_movie():
-    
+@app.route("/register", methods=['POST'])
+def user_name():
+    username = request.form['user']
+    password1 = request.form['password1']
+    password2 = request.form['password2']
 
-    return redirect("/")
+    return render_template("confirmation.html",user = username, pw1 = password1, pw2 = password2 )
 
 
 @app.route("/")
 def index():
-    # encoded_error = request.args.get("error")
-    return render_template('edit.html')
+    #encoded_error = request.args.get("error")
+    user = request.args.get("username")
+    return render_template('edit.html',username = user)
 
 
 

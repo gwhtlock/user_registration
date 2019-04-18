@@ -1,9 +1,39 @@
-{% extends index.html %}
+{% extends "index.html" %}
+
+
 
 
 {% block content %}
 
 
-<h1>"On track"</h1>
+<h1>"User Registration"</h1>
+
+
+<form action="/register" method="post">
+    <label>
+        Enter User name:
+        <input type="text" name="user"/>
+    </label>
+
+    <label>
+        Enter password:
+        <input type="text" name="password1"/>
+    </label>
+
+    <label>
+        Re-enter password:
+        <input type="text" name="password2"/>
+    </label>
+    <input type="submit" value="Register"/>
+</form>
+
+
+
+<p class='user'>{{ username }}</p>
+{% if user %}
+  <p class='user'>{{ username }}</p>
+{% endif %}
+
+
 
 {% endblock %}
