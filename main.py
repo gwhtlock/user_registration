@@ -18,14 +18,19 @@ def user_name():
     password1 = request.form['password1']
     password2 = request.form['password2']
 
+    if password1 != password2:
+        error = "passwords do not match"
+        return redirect("/?error"+error)
+
     return render_template("confirmation.html",user = username, pw1 = password1, pw2 = password2 )
 
 
 @app.route("/")
 def index():
-    #encoded_error = request.args.get("error")
-    user = request.args.get("username")
-    return render_template('edit.html',username = user)
+    encoded_error = request.args.get("error")
+    
+    return render_template('edit.html',error = encoded_error and cgi.escape(encoded_error, quote=True))
+
 
 
 
