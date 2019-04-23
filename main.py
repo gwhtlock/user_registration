@@ -28,6 +28,7 @@ def check_email(login_name):
     elif name.count(".") > 1:
         user_error = "Email can only include one '.' symbol"
     
+    
 
 
 
